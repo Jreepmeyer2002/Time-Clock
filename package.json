@@ -1,0 +1,20 @@
+{
+  "name": "time-clock",
+  "version": "1.0.0",
+  "description": "Root project for time clock",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "bash -c \"(cd api;echo api;npm i) && (cd app;echo app;npm i)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsr5569/Time-Clock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsr5569/Time-Clock/issues"
+  },
+  "homepage": "https://github.com/jsr5569/Time-Clock#readme"
+}
