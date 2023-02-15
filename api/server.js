@@ -16,15 +16,15 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./app/models");
+const db = require("./models/punch.model");
 
-db.sequelize.sync();
+//db.sequelize.sync();
 
 app.get('/', function (req,res) {
   res.sendFile(path + "index.html");
 });
 
-require("./app/routes")(app);
+require("./routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

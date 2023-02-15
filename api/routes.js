@@ -1,5 +1,5 @@
 module.exports = app => {
-    const punches = require("controllers/punch.controller.js");
+    const punches = require("./controllers/punch.controller");
   
     var router = require("express").Router();
   
