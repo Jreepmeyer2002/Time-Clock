@@ -6,6 +6,7 @@ const path = __dirname + '../app/build/';
 
 const app = express();
 
+
 app.use(express.static(path));
 
 var corsOptions = {
