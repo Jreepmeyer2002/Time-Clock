@@ -16,10 +16,6 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./models/punch.model");
-
-//db.sequelize.sync();
-
 app.get('/', function (req,res) {
   res.sendFile(path + "index.html");
 });
