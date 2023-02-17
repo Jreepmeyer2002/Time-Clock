@@ -6,6 +6,7 @@ const path = __dirname + '../app/build/';
 
 const app = express();
 
+
 app.use(express.static(path));
 
 var corsOptions = {
@@ -15,10 +16,6 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-const db = require("./models/punch.model");
-
-//db.sequelize.sync();
 
 app.get('/', function (req,res) {
   res.sendFile(path + "index.html");
