@@ -2,9 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const path = __dirname + '../app/build/';
+const path = __dirname + '/build/';
 
 const app = express();
+
 
 app.use(express.static(path));
 
@@ -15,10 +16,6 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-const db = require("./models/punch.model");
-
-//db.sequelize.sync();
 
 app.get('/', function (req,res) {
   res.sendFile(path + "index.html");
