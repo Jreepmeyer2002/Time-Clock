@@ -12,7 +12,7 @@
 
 # production
 /build
-/app/build
+/api/build
 /api/.env
 
 # misc
