@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const path = __dirname + '../app/build/';
+const path = __dirname + '/build/';
 
 const app = express();
 

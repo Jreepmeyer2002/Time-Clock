@@ -20,8 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "preinstall": "bash -c \"(cd ../api;echo api;npm i)\"",
-    "build": "react-scripts build",
+    "build": "set BUILD_PATH=../api/build&& react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
