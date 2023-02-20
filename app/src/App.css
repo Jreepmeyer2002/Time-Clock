@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.time-keeping {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time-keeping button {
+  margin: 20px;
+}
