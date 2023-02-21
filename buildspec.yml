@@ -1,25 +1,31 @@
 version: 0.2
 
+env:
+  shell: bash
+
 phases:
   install:
+    on-failure: ABORT
     runtime-versions:
-      nodejs: 10
+      nodejs: 14
     commands:
       - echo Installing app dependencies...
-      - yarn install
-  build:
+      - npm run preinstall
+  pre_build:
+    on-failure: ABORT
     commands:
-      - echo Building static site...
-      - yarn build
-      - echo Run tests...
-      - CI=true yarn test
-
-artifacts:
-  type: zip
-  paths:
-    - './build/**/*'
-    - './cicd/**/*'
-
+      - echo Running tests
+      - npm run test
+  build:
+    on-failure: ABORT
+    commands:
+      - echo Building app
+      - cd app && npm run build
+  post_build:
+    on-failure: ABORT
+    commands:
+      - echo Starting the React App
+      - cd app && npm run start
 cache:
   paths:
     - './node_modules/**/*'
