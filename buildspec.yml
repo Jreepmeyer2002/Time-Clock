@@ -10,7 +10,7 @@ phases:
       nodejs: 14
     commands:
       - echo Installing app dependencies...
-      - npm run preinstall
+      - npm install
   pre_build:
     on-failure: ABORT
     commands:
