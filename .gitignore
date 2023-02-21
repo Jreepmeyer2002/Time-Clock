@@ -13,11 +13,12 @@
 # production
 /build
 /app/build
+/api/build
 /api/.env
 
 # misc
 .DS_Store
-.env.local
+.env
 .env.development.local
 .env.test.local
 .env.production.local
