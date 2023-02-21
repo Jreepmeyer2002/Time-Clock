@@ -7,10 +7,10 @@ phases:
   install:
     on-failure: ABORT
     runtime-versions:
-      nodejs: 14
+      nodejs: 16
     commands:
       - echo Installing app dependencies...
-      - npm run preinstall
+      - npm install
   pre_build:
     on-failure: ABORT
     commands:
