@@ -25,7 +25,6 @@ phases:
     on-failure: ABORT
     commands:
       - echo Starting the React App
-      - npm run start
 cache:
   paths:
     - './node_modules/**/*'
