@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Page from './Page';
+import Login from './Login';
 import reportWebVitals from './reportWebVitals';
 import './page.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Page />
+    <Login />
   </React.StrictMode>
 );
 
