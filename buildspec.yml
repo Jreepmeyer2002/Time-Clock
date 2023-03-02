@@ -23,7 +23,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo Building and Deploying app
-      - cd manifests; pwd; terraform plan; terraform apply --auto-approve;
+      - cd manifests; pwd; terraform init; terraform plan; terraform apply --auto-approve;
       # - echo Building app and deplo
       # - cd app && npm run build
   # post_build:
