@@ -25,6 +25,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo Hosting React app on AWS ECS
+      - pwd
       - npm run deploy
 
 cache:
