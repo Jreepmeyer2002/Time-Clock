@@ -15,6 +15,14 @@
 /api/build
 /api/.env
 
+# terraform
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+/manifests/.terraform
+/manifests/.terraform.lock.hcl
+
 # misc
 .DS_Store
 .env

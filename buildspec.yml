@@ -24,7 +24,9 @@ phases:
   post_build:
     on-failure: ABORT
     commands:
-      - echo Starting the React App
+      - echo Hosting React app on AWS ECS
+      - cd manifests && terraform apply
+
 cache:
   paths:
     - './node_modules/**/*'
