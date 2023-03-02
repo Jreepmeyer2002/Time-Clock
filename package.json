@@ -7,7 +7,6 @@
     "test": "bash -c \"(cd app;echo app;CI=true npm test) && (cd api;echo api;npm test)\"",
     "preinstall": "bash -c \"(cd api;echo api;npm i) && (cd app;echo app;npm i)\"",
     "start": "bash -c \"(cd api;npm start)\""
-    // "deploy": "bash -c \"(cd manifests;terraform plan;terraform apply --auto-approve)\""
   },
   "repository": {
     "type": "git",
