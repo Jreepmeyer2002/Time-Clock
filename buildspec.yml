@@ -19,13 +19,16 @@ phases:
   build:
     on-failure: ABORT
     commands:
-      - echo Building app
-      - cd app && npm run build
-  post_build:
-    on-failure: ABORT
-    commands:
-      - echo Hosting React app on AWS ECS
-      - npm run-script deploy
+      - echo Building and Deploying app
+      - cd manifests; pwd; terraform plan; terraform apply --auto-approve;
+      # - echo Building app and deplo
+      # - cd app && npm run build
+  # post_build:
+  #   on-failure: ABORT
+  #   commands:
+  #     - echo Hosting React app on AWS ECS
+  #     - pwd
+  #     - npm run-script deploy
 
 cache:
   paths:
