@@ -26,7 +26,7 @@ phases:
     commands:
       - echo Hosting React app on AWS ECS
       - pwd
-      - npm run deploy
+      - npm run-script deploy
 
 cache:
   paths:
