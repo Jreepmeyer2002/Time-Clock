@@ -23,15 +23,10 @@ phases:
     on-failure: ABORT
     commands:
       - echo Building and Deploying app
+      - docker build -t time-clock -f ./manifests/Dockerfile .
+      - docker tag time-clock:latest 619347021476.dkr.ecr.us-east-1.amazonaws.com/time-clock
+      - docker push 619347021476.dkr.ecr.us-east-1.amazonaws.com/time-clock:latest 
       - cd manifests; pwd; terraform init; terraform plan; terraform apply --auto-approve;
-      # - echo Building app and deplo
-      # - cd app && npm run build
-  # post_build:
-  #   on-failure: ABORT
-  #   commands:
-  #     - echo Hosting React app on AWS ECS
-  #     - pwd
-  #     - npm run-script deploy
 
 cache:
   paths:
