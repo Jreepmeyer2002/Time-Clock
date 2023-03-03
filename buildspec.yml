@@ -17,8 +17,9 @@ phases:
   pre_build:
     on-failure: ABORT
     commands:
-      - echo Running tests
+      - echo Running tests and logging into aws account
       - npm run test
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 619347021476.dkr.ecr.us-east-1.amazonaws.com
   build:
     on-failure: ABORT
     commands:
