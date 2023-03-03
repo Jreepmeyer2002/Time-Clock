@@ -12,7 +12,7 @@ module.exports = {
     const id = parseInt(request.params.id);
     const time = Date.now();
     console.log("[" + new Date(time).toLocaleDateString() + " " + new Date(time).toLocaleTimeString() + "] " + request.ip + " pulled " + id + "'s week.")
-    pool.query('SELECT * FROM employees WHERE id=$1', [id], (error, results) => {
+    pool.query('SELECT * FROM person WHERE id=$1', [id], (error, results) => {
     if (error) {
       throw error
     }
