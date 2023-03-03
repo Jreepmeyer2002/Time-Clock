@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "reactstrap";
 
 const ClockOut: React.FC = () => {
   const [clockOutTime, setClockOutTime] = useState<string>("");
@@ -11,9 +12,9 @@ const ClockOut: React.FC = () => {
 
   return (
     <div>
-        <button type="button" onClick={handleClockOut}>
+        <Button onClick={handleClockOut}>
           Clock Out
-        </button>
+        </Button>
         {clockOutTime && <p>Clocked out at {clockOutTime}</p>}
     </div>
   );
