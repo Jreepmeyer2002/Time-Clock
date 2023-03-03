@@ -12,7 +12,7 @@ CREATE TABLE person (
 );
 
 CREATE TABLE company (
-    cid INT ,
+    cid INT,
     name VARCHAR(32),
     location VARCHAR(32)
 );

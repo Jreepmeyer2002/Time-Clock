@@ -5,7 +5,7 @@ module.exports = app => {
     const db = require('./queries')
   
     // Create a new Punch
-    router.get("/", db.getStatus);
+    router.get("/", db.ping);
     router.get("/user", db.getUser);
     router.put("/in", db.clockIn);
     router.put("/out", db.clockOut);
