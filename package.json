@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "bash -c \"(cd app;echo app;CI=true npm test) && (cd api;echo api;npm test)\"",
-    "preinstall": "bash -c \"(cd api;echo api;npm i) && (cd app;echo app;npm i)\""
+    "preinstall": "bash -c \"(cd api;echo api;npm i) && (cd app;echo app;npm i)\"",
+    "start": "bash -c \"(cd api;npm start)\""
   },
   "repository": {
     "type": "git",
