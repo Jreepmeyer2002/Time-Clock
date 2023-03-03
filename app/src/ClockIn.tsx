@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Button} from "reactstrap";
 
 const ClockIn: React.FC = () => {
   const [clockInTime, setClockInTime] = useState<string>("");
@@ -11,9 +12,9 @@ const ClockIn: React.FC = () => {
 
   return (
     <div>
-        <button type="button" onClick={handleClockIn}>
+        <Button style={{backgroundColor: "black"}} onClick={handleClockIn}>
           Clock In
-        </button>
+        </Button>
         {clockInTime && <p>Clocked in at {clockInTime}</p>}
     </div>
   );

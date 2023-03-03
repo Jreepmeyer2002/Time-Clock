@@ -5,8 +5,7 @@ class Headings extends Component{
     {
         return(
             <div>
-                <h1>RIT Employee Virtual Time Clock</h1>
-                
+                <h1 style={{ fontFamily: "Helvetica Neue", color: "orange"}}>RIT Employee Virtual Time Clock</h1>
             </div>
         )
     }
