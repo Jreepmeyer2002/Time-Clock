@@ -1,19 +1,17 @@
-import ClockIn from './ClockIn';
-import ClockOut from './ClockOut';
-import './App.css';
+import Login from "./Login";
+import Home from "./Home";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-        <header>
-          <h2> Minute Man </h2>
-        </header>
-        <div className="time-keeping">
-          <ClockIn />
-          <ClockOut />
-        </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
