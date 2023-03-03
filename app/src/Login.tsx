@@ -3,7 +3,12 @@ import {Navigate} from "react-router-dom";
 import './App'
 
 const Login = () => {
-  
+
+    const userNames = {
+      'gwikina': 'abc',
+      'admin': 'password', 
+      'bubblegumboy123':'bubble'
+    }
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
