@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import {Label, Input, Button, Form, Container, Row, Col} from "reactstrap";
 import {Navigate} from "react-router-dom";
-import './App'
+import './App';
+import Page from "./Page";
 
 const Login = () => {
   
@@ -20,27 +22,49 @@ const Login = () => {
     }
 
   return (
-    <div className="login-page">
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <button type="submit">Login</button>
-      </form>
+    <div style={{textAlign: "center", fontFamily: "Arial, Helvetica, serif"}} className="login-page">
+      <h1>Welcome to RIT Time</h1>
+      <Container>
+        <Form onSubmit={handleLogin}>
+          <Row>
+            <Col>
+              <Label>
+                Username:
+              <Input
+                type="text"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+              />
+              </Label>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Label>
+                Password:
+                <Input
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </Label>
+            </Col>
+          </Row>
+            <Label></Label>
+            <Row>
+              <Col sm={12}>
+                <Button color="success" type="submit">Login</Button>
+              </Col>
+            </Row>
+            <Label></Label>
+            <Row>
+              <Col sm={12}>
+                <Button color="info">Create Account</Button>
+              </Col>
+            </Row>
+        </Form>
+      </Container>
+      
     </div>
   );
 };
