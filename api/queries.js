@@ -31,10 +31,11 @@ module.exports = {
       const time = Date.now();
       console.log("[" + new Date(time).toLocaleDateString() + " " + new Date(time).toLocaleTimeString() + "] " + request.ip + " pulled " + id + "'s user.")
       pool.query('SELECT * FROM person WHERE ID=$1', [id], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows[0])});
+        if (error) {
+          throw error
+        }
+        response.status(200).json(results.rows[0])
+      });
     }
   },
 
@@ -42,15 +43,15 @@ module.exports = {
     const id = parseInt(request.params.id);
     const company = parseInt(request.params.company);
     pool.query('SELECT * FROM timeLog WHERE person=$1 AND company=$2', [id, company], (error, results) => {
-    if (error) {
-      throw error
-    }
-    const recent = results.rows[results.rows.length-1];
-    const payload = {
-      clockedIn: recent.clockout == null
-    };
-    response.status(200).json(payload);
-  })
+      if (error) {
+        throw error
+      }
+      const recent = results.rows[results.rows.length-1];
+      const payload = {
+        clockedIn: recent.clockout == null
+      };
+      response.status(200).json(payload);
+    });
   },
 
   ping: function(request, response) {
