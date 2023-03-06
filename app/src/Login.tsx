@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Label, Input, Button, Form, Container, Row, Col} from "reactstrap";
 import {Navigate} from "react-router-dom";
-import './App';
+import './App.css';
 import Page from "./Page";
 
 const Login = () => {
