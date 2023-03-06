@@ -9,7 +9,7 @@ const pool = new Pool({
 
 describe("Test the database", () => {
     test("Test person table", () => {
-        pool.query('SELECT * FROM person WHERE id=1')
+        pool.query('SELECT * FROM person WHERE id=$1', [1])
             .then(res => {
                     expect(res.rows[0].fname).toBe("john");
                     expect(res.rows[0].lname).toBe("doe");
