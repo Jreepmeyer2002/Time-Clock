@@ -1,14 +1,12 @@
 module.exports = app => {
-
-
     var router = require("express").Router();
-    const db = require('./queries')
-  
+    const queries = require('./queries')
+
     // Create a new Punch
-    router.get("/", db.ping);
-    router.get("/user/:id", db.getUser);
-    router.put("/in/:id/:company", db.clockIn);
-    router.put("/out/:id/:company", db.clockOut);
-    router.get("/status/:id/:company", db.getStatus);
+    router.get("/", queries.ping);
+    router.get("/user/:id", queries.getUser);
+    router.put("/in/:id/:company", queries.clockIn);
+    router.put("/out/:id/:company", queries.clockOut);
+    router.get("/status/:id/:company", queries.getStatus);
     app.use('/api/time', router);
-  };
+};
