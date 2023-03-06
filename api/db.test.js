@@ -14,6 +14,7 @@ describe("Test the database", () => {
                     expect(res.rows[0].fname).toBe("john");
                     expect(res.rows[0].lname).toBe("doe");
                     expect(res.rows[0].username).toBe("jdoe10");
+                    expect(res.rows[0].companyID).toBe(1);
                     expect(res.rows[0].password).toBe("password");
                 }
             );
@@ -29,7 +30,7 @@ describe("Test the database", () => {
     });
 
     test("Test timelog table", () => {
-        pool.query('SELECT * FROM timelog WHERE id=1')
+        pool.query('SELECT * FROM timelog WHERE person=1')
             .then(res => {
                     expect(res.rows[0].date).toBe("2-15");
                     expect(res.rows[0].clockIn).toBe("13:00");
