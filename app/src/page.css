@@ -8,6 +8,6 @@ html{
         color: #fff;
 }
 
-div{
+.login-page, .home{
     background-color: orange;
 }

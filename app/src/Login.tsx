@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Label, Input, Button, Form, Container, Row, Col} from "reactstrap";
+import {Label, Input, Button, Form, Container, Row, Col, ModalBody, ModalFooter, ModalHeader, Modal} from "reactstrap";
 import {Navigate} from "react-router-dom";
 import './App.css';
 import Page from "./Page";
@@ -9,6 +9,10 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
+    const [Fname, setFName] = useState("");
+    const [LName, setLName] = useState("");
+    const [toggleState, setToggleState] = useState(false);
+    
   
     const handleLogin = (event: React.FormEvent) => {
         event.preventDefault();
@@ -19,6 +23,10 @@ const Login = () => {
     };
     if (loggedIn) {
       return <Navigate to="/home" />
+    }
+
+    const showHide = () => {
+      setToggleState(!toggleState);
     }
 
   return (
@@ -59,12 +67,29 @@ const Login = () => {
             <Label></Label>
             <Row>
               <Col sm={12}>
-                <Button color="info">Create Account</Button>
+                <Button color="info" onClick={showHide}>Create Account</Button>
               </Col>
             </Row>
         </Form>
       </Container>
-      
+      <div>
+      <Modal isOpen={toggleState} toggle={showHide} >
+          <ModalHeader toggle={showHide}>Create Account</ModalHeader>                   
+        <ModalBody>
+          <Label for="field1">First Name</Label>
+            <Input id="field1" name="first_name" value={Fname} type="text" onChange={(event) => setFName(event.target.value)}/>
+              <Label for="field2">Last Name</Label>
+                <Input id="field2" name="last_name" value={LName} type="text" onChange={(event) => setLName(event.target.value)}/>
+                  <Label for="field3">Username</Label>
+                    <Input id="field3" name="username" value={username} type="text" onChange={(event) => setUsername(event.target.value)}/>
+                  <Label for="field4">Password</Label>
+                    <Input id="field4" name="warning_cap" value={password} type="text" onChange={(event) => setPassword(event.target.value)}/>
+          </ModalBody>
+          <ModalFooter>
+            <Button color='success' onClick={showHide}>Create Account</Button>
+          </ModalFooter>
+          </Modal>
+        </div>
     </div>
   );
 };
