@@ -12,7 +12,7 @@ const ClockOut: React.FC = () => {
 
   return (
     <div>
-        <Button onClick={handleClockOut}>
+        <Button style={{backgroundColor: "black"}} onClick={handleClockOut}>
           Clock Out
         </Button>
         {clockOutTime && <p>Clocked out at {clockOutTime}</p>}

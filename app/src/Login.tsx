@@ -30,7 +30,7 @@ const Login = () => {
     }
 
   return (
-    <div style={{textAlign: "center", fontFamily: "Arial, Helvetica, serif"}} className="login-page">
+    <div style={{textAlign: "center"}} className="login-page">
       <h1>Welcome to RIT Time</h1>
       <Container>
         <Form onSubmit={handleLogin}>
