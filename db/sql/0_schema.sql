@@ -3,7 +3,7 @@ DROP TABLE if EXISTS company;
 DROP TABLE if EXISTS timeLog;
 
 CREATE TABLE person (
-    pid INT,
+    ID SERIAL PRIMARY KEY,
     fname VARCHAR(32),
     lname VARCHAR(32),
     username VARCHAR(32),
@@ -12,15 +12,15 @@ CREATE TABLE person (
 );
 
 CREATE TABLE company (
-    cid INT ,
+    ID SERIAL PRIMARY KEY,
     name VARCHAR(32),
     location VARCHAR(32)
 );
 
 CREATE TABLE timeLog (
-    personID INT,
+    PERSON INT,
+    COMPANY INT,
     date VARCHAR(32),
-    clockIn VARCHAR(32),
     clockOut VARCHAR(32)
 );
 
