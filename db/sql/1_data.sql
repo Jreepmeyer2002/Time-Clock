@@ -1,8 +1,8 @@
-insert into person 
-values (1, 'john', 'doe', 'jdoe10', 1, 'password');
+insert into person ("fname", "lname", "username", "companyid", "password")
+values ('john', 'doe', 'jdoe10', 1, 'password');
 
-insert into company
-values (1, 'rit', 'rit');
+insert into company ("name", "location")
+values ('rit', 'rit');
 
 insert into timeLog
-values (1, '2-15', '13:00', '18:00');
+values (1, '1', '2-15', '18:00');
