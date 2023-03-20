@@ -1,10 +1,10 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  user: 'postgres',
+  host: 'timeclock-2.cf8h74pnefuq.us-east-1.rds.amazonaws.com',
+  database: 'timebase',
+  password: 'password',
+  port: 5432,
 })
 
 const debug = process.env.DEBUG == "true";
