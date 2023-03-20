@@ -30,12 +30,10 @@ describe("Test the database", () => {
     });
 
     test("Test timelog table", () => {
-        pool.query('SELECT * FROM timelog WHERE person=1')
-            .then(res => {
-                    expect(res.rows[0].date).toBe("2-15");
-                    expect(res.rows[0].clockIn).toBe("13:00");
-                    expect(res.rows[0].clockOut).toBe("18:00");
-                }
-            );
+        pool.query('SELECT * FROM timelog WHERE person=$1 AND company=$2', [1, 1], (error, results) => {
+            expect(results.rows[0].date).toBe("2-15");
+            expect(results.rows[0].clockIn).toBe("13:00");
+            expect(results.rows[0].clockOut).toBe("18:00");
+        });
     });
 });

@@ -39,19 +39,25 @@ module.exports = {
     }
   },
 
-  getStatus: function(request, response){
-    const id = parseInt(request.params.id);
-    const company = parseInt(request.params.company);
-    pool.query('SELECT * FROM timeLog WHERE person=$1 AND company=$2', [id, company], (error, results) => {
-      if (error) {
-        throw error
-      }
-      const recent = results.rows[results.rows.length-1];
-      const payload = {
-        clockedIn: recent.clockout == null
-      };
-      response.status(200).json(payload);
-    });
+  getStatus: function(request, response) {
+    if(debug) {
+      response.status(200).json({
+        clockedIn: false
+      })
+    } else {
+      const id = parseInt(request.params.id);
+      const company = parseInt(request.params.company);
+      pool.query('SELECT * FROM timeLog WHERE PERSON=$1 AND COMPANY=$2', [id, company], (error, results) => {
+        if (error) {
+          console.error(error);
+        }
+        const recent = results.rows[results.rows.length - 1];
+        const payload = {
+          clockedIn: recent.clockOut == null
+        };
+        response.status(200).json(payload);
+      });
+    }
   },
 
   ping: function(request, response) {
@@ -62,7 +68,7 @@ module.exports = {
     console.log(`Clocking in user with ID ${request.params.id}`);
     if(debug) {
       response.status(200).json({
-        pid: 1,
+        ID: 1,
         fname: 'john',
         lname: 'doe',
         username: 'johndoe10',
@@ -87,7 +93,7 @@ module.exports = {
     console.log(`Clocking out user with ID ${request.params.id}`);
     if(debug) {
       response.status(200).json({
-        pid: 1,
+        ID: 1,
         fname: 'john',
         lname: 'doe',
         username: 'johndoe10',

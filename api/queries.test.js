@@ -16,7 +16,7 @@ describe("Test the queries", () => {
       });
       const response = httpMocks.createResponse();
       queries.getUser(request, response);
-      var user = {
+      const user = {
          ID: 1,
          fname: 'john',
          lname: 'doe',
@@ -25,5 +25,19 @@ describe("Test the queries", () => {
          password: 'password'
       }
       expect(response._getJSONData()).toStrictEqual(user);
+   });
+
+   test('test getStatus', () => {
+      const request = httpMocks.createRequest({
+         method: 'GET',
+         params: {id: 1, company: 1}
+      });
+      const response = httpMocks.createResponse();
+      queries.getStatus(request, response);
+      const status = {
+         clockedIn: false
+      }
+      // console.log("foo", response._getData());
+      expect(response._getJSONData()).toStrictEqual(status);
    });
 });

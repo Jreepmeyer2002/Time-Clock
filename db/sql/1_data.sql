@@ -5,4 +5,4 @@ insert into company ("name", "location")
 values ('rit', 'rit');
 
 insert into timeLog
-values (1, '1', '2-15', '18:00');
+values (1, 1, '2-15', '18:00');
