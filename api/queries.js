@@ -1,10 +1,10 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  user: 'postgres',
+  host: 'timeclock-2.cf8h74pnefuq.us-east-1.rds.amazonaws.com',
+  database: 'timebase',
+  password: 'password',
+  port: 5432,
 })
 
 const debug = process.env.DEBUG == "true";
@@ -66,51 +66,30 @@ module.exports = {
 
   clockIn: function(request, response) {
     console.log(`Clocking in user with ID ${request.params.id}`);
-    if(debug) {
-      response.status(200).json({
-        ID: 1,
-        fname: 'john',
-        lname: 'doe',
-        username: 'johndoe10',
-        companyID: '1',
-        password: 'password'
-      })
-    }
-    else {
-      const person = parseInt(request.params.id);
-      const company = parseInt(request.params.company);
-      const time = Date.now();
-      pool.query(`INSERT INTO timeLog ("person", "company", "date")  
-      VALUES ($1, $2, $3)`, [person, company, time], (error, results) => {
+    const person = parseInt(request.params.id);
+    const company = parseInt(request.params.company);
+    const time = Date.now();
+
+    pool.query(`INSERT INTO timelog ("person", "company", "date")
+                VALUES ($1, $2, $3)`, [person, company, time], (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).json('success')});
-    }
+      response.status(200)
+    });
   },
 
   clockOut: function(request, response) {
     console.log(`Clocking out user with ID ${request.params.id}`);
-    if(debug) {
-      response.status(200).json({
-        ID: 1,
-        fname: 'john',
-        lname: 'doe',
-        username: 'johndoe10',
-        companyID: '1',
-        password: 'password'
-      })
-    }
-    else {
-      const person = parseInt(request.params.id);
-      const company = parseInt(request.params.company);
-      const time = Date.now();
-      pool.query(`UPDATE timeLog SET clockout=$3 WHERE person = $1 AND company = $2`,
-      [person, company, time], (error, results) => {
+    const person = parseInt(request.params.id);
+    const company = parseInt(request.params.company);
+    const time = Date.now();
+    pool.query(`UPDATE timeLog SET clockout=$3 WHERE person = $1 AND company = $2`,
+    [person, company, time], (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).json('success')});
-    }
+      response.status(200)
+    });
   },
 }
