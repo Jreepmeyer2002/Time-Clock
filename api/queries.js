@@ -16,7 +16,7 @@ if(debug) {
 module.exports = {
   getUser: function(request, response){
     console.log(`Getting user with ID ${request.params.id}`);
-    if(debug) {
+    if(false) {
       response.status(200).json({
         ID: 1,
         fname: 'john',
@@ -59,27 +59,19 @@ module.exports = {
 
   clockIn: function(request, response) {
     console.log(`Clocking in user with ID ${request.params.id}`);
-    if(debug) {
-      response.status(200).json({
-        pid: 1,
-        fname: 'john',
-        lname: 'doe',
-        username: 'johndoe10',
-        companyID: '1',
-        password: 'password'
-      })
-    }
-    else {
+
+     
       const person = parseInt(request.params.id);
       const company = parseInt(request.params.company);
       const time = Date.now();
-      pool.query(`INSERT INTO timeLog ("person", "company", "date")  
+
+      pool.query(`INSERT INTO timelog ("person", "company", "date")  
       VALUES ($1, $2, $3)`, [person, company, time], (error, results) => {
       if (error) {
         throw error
       }
       response.status(200).json('success')});
-    }
+    
   },
 
   clockOut: function(request, response) {
