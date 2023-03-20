@@ -9,5 +9,6 @@ module.exports = app => {
     router.get("/user", db.getUser);
     router.put("/in", db.clockIn);
     router.put("/out", db.clockOut);
+    router.put("/new", db.newUser);
     app.use('/api/time', router);
   };

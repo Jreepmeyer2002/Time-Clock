@@ -58,5 +58,19 @@ module.exports = {
         }
         response.status(200).json('status of the current timepunch')
     });
+  },
+
+  newUser: function(request, response) {
+    const fname = request.params.fname;
+    const lname = request.params.lname;
+    const username = request.params.username;
+    const password = request.params.password;
+
+    pool.query('INSERT INTO person (fname, lname, username, companyID, password) VALUES($1, $2, $3, $4, $5, $6)', [fname], [lname], [username], [1], [password], (error, results) => { 
+      if (error) {
+        throw error
+      }
+      response.status(200).json('status of the current timepunch')
+    });
   }
 }
