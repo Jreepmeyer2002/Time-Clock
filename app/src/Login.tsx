@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import {Label, Input, Button, Form, Container, Row, Col, ModalBody, ModalFooter, ModalHeader, Modal} from "reactstrap";
+import {Label, Input, Button, Form, Container, Row, Col, ModalBody, ModalFooter, ModalHeader, Modal, Alert} from "reactstrap";
 import {Navigate} from "react-router-dom";
 import './App.css';
-import { addSyntheticLeadingComment } from "typescript";
 
 const Login = () => {
 
-    const initialUsers = [{username: 'jarred', password: 'reep'},];
+    const initialUsers = [{username: '1', password: 'password'},];
   
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -14,41 +13,28 @@ const Login = () => {
     const [Fname, setFName] = useState("");
     const [Lname, setLname] = useState("");
     const [toggleState, setToggleState] = useState(false);
+    const [toggleStateAlert, setToggleStateAlert] = useState(false);
     const [users, setUsers] = useState(initialUsers)
     
   
     const handleLogin = (event: React.FormEvent) => {
         event.preventDefault();
-        /** 
-        fetch('/user')
-        .then(
-          (response) =>
+        
+        fetch('api/time/user/' + username + "/" + password)
+         .then( 
+          (response) => 
           {
               if(response.status === 200){
-                  return(response.json());
-              }
-              else{
-                  console.log("HTTP error:" + response.status + ":" +  response.statusText);
-                  return ([ ["status ", response.status]]);
+                setLoggedIn(true);
               }
           }
       )
-      .then ((jsonOutput) => 
-          {
-              updateUsers(jsonOutput);
-          }
-          )
       .catch((error) =>
           {console.log(error);
               updateUsers("");
           })
-          */
-         // for(var x = 0 ; x < users.length; x++){
-            if (username === 'admin' && password === 'password') {
-              setLoggedIn(true);
-              console.log("HELLO");
-          }
-          //}
+
+
         
     };
 
@@ -60,6 +46,10 @@ const Login = () => {
       setToggleState(!toggleState);
     }
 
+    const showHideAlert = () => {
+      setToggleStateAlert(!toggleStateAlert);
+    }
+
     const updateUsers = (apiResponse: any) => {
       console.log(apiResponse);
         setUsers([...users, apiResponse]);
@@ -67,19 +57,19 @@ const Login = () => {
 
     const createUser = () => {
       showHide();
-      fetch('/new', {
+      fetch('api/time/new', {
             method: 'POST',
             body: JSON.stringify({
                 fname: Fname,
                 lname: Lname,
                 username: username,
+                companyID: 1,
                 password: password,
             }),
             headers:{"Content-type": "application/json; charset=UTF-8"}
         })
         .then(response =>{
             return response.json()
-            console.log(response.json);
         })
     }
 
@@ -87,6 +77,12 @@ const Login = () => {
   return (
     <div style={{textAlign: "center"}} className="login-page">
       <h1>Welcome to RIT Time</h1>
+      <Modal isOpen={toggleStateAlert}>
+        <ModalHeader toggle={showHideAlert}>Error</ModalHeader>
+        <ModalBody>
+            Invalid username/password
+        </ModalBody>
+      </Modal>
       <Container>
         <Form onSubmit={handleLogin}>
           <Row>
@@ -116,7 +112,7 @@ const Login = () => {
             <Label></Label>
             <Row>
               <Col sm={12}>
-                <Button color="success" type="submit">Login</Button>
+                <Button color="success" type="submit" onClick={showHideAlert}>Login</Button>
               </Col>
             </Row>
             <Label></Label>

@@ -7,7 +7,18 @@ const ClockIn: React.FC = () => {
   const handleClockIn = () => {
     const currentDate = new Date();
     const formattedTime = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
-    setClockInTime(formattedTime);
+    fetch('api/time/in/1/1', {method: "PUT"}) 
+      
+      .then( 
+        (response) => 
+        {
+            if(response.status === 200){
+              setClockInTime(formattedTime);
+            }
+        }
+    )
+    .catch((error) =>
+        {console.log(error);})
   };
 
   return (

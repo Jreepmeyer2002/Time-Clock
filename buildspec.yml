@@ -17,21 +17,17 @@ phases:
   pre_build:
     on-failure: ABORT
     commands:
-      - echo Running tests
+      - echo Running tests and logging into aws account
       - npm run test
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 619347021476.dkr.ecr.us-east-1.amazonaws.com
   build:
     on-failure: ABORT
     commands:
       - echo Building and Deploying app
+      - docker build -t time-clock -f ./manifests/Dockerfile .
+      - docker tag time-clock:latest 619347021476.dkr.ecr.us-east-1.amazonaws.com/time-clock
+      - docker push 619347021476.dkr.ecr.us-east-1.amazonaws.com/time-clock:latest 
       - cd manifests; pwd; terraform init; terraform plan; terraform apply --auto-approve;
-      # - echo Building app and deplo
-      # - cd app && npm run build
-  # post_build:
-  #   on-failure: ABORT
-  #   commands:
-  #     - echo Hosting React app on AWS ECS
-  #     - pwd
-  #     - npm run-script deploy
 
 cache:
   paths:

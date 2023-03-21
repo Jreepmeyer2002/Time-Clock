@@ -7,7 +7,17 @@ const ClockOut: React.FC = () => {
   const handleClockOut = () => {
     const currentDate = new Date();
     const formattedTime = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
-    setClockOutTime(formattedTime);
+    fetch('api/time/out/1/1', {method: "PUT"}) 
+      .then( 
+        (response) => 
+        {
+            if(response.status === 200){
+              setClockOutTime(formattedTime);
+            }
+        }
+    )
+    .catch((error) =>
+        {console.log(error);})
   };
 
   return (

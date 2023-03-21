@@ -12,8 +12,16 @@ class Page extends Component{
             <div className="home">
                 <Headings/>
                 <div className="time-keeping">
-                    <ClockIn />
-                    <ClockOut />
+                <Container>
+                    <Row>
+                        <Col>
+                            <ClockIn />
+                        </Col>
+                        <Col>
+                            <ClockOut />
+                        </Col>
+                    </Row>
+                </Container>
                 </div>               
             </div>
         )
