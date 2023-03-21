@@ -16,26 +16,39 @@ if(debug) {
 module.exports = {
   getUser: function(request, response){
     console.log(`Getting user with ID ${request.params.id}`);
-    if(false) {
-      response.status(200).json({
-        ID: 1,
-        fname: 'john',
-        lname: 'doe',
-        username: 'johndoe10',
-        companyID: '1',
-        password: 'password'
-      })
-    }
-    else {
       const id = parseInt(request.params.id);
       const time = Date.now();
       console.log("[" + new Date(time).toLocaleDateString() + " " + new Date(time).toLocaleTimeString() + "] " + request.ip + " pulled " + id + "'s user.")
       pool.query('SELECT * FROM person WHERE ID=$1', [id], (error, results) => {
+      console.log(results.rows[0])
       if (error) {
         throw error
       }
+      if(results.rows[0] == null){
+        response.status(400)
+      }
+      else
       response.status(200).json(results.rows[0])});
-    }
+
+  },
+
+  getLogin: function(request, response){
+    console.log(`Getting user with username ${request.params.username}`);
+      const username = request.params.username;
+      const password = request.params.password;
+      const time = Date.now();
+      console.log("[" + new Date(time).toLocaleDateString() + " " + new Date(time).toLocaleTimeString() + "] " + request.ip + " pulled " + username + "'s user.")
+      pool.query('SELECT * FROM person WHERE username=$1 AND password=$2', [username, password], (error, results) => {
+      console.log(results.rows[0])
+      if (error) {
+        throw error
+      }
+      if(results.rows[0] == null){
+        response.status(400)
+      }
+      else
+      response.status(200).json(results.rows[0])});
+
   },
 
   getStatus: function(request, response){
@@ -97,5 +110,16 @@ module.exports = {
       }
       response.status(200).json('success')});
     }
+  },
+
+  newUser: function(request, response) {
+      const newUser = request.body;
+      pool.query(`insert into person ("fname", "lname", "username", "companyid", "password")
+      values ($1, $2, $3, $4, $5);`,
+      [newUser.fname, newUser.lname, newUser.username, newUser.companyID, newUser.password], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json('success')});
   },
 }
